@@ -1,14 +1,17 @@
-import MainHeader from "./components/headers/MainHeader";
-import CountriesList from "./countriesList";
+import CountriesList from "@/components/CountriesList";
+import fetcher from "@/lib/fetcher";
+import { CountriesType } from "@/global-types";
 
-export default function Home() {
+const getAllContries = async () => {
+  const data = await fetcher("/all");
+  const countriesArray = Object.values(data);
+  return countriesArray as unknown as CountriesType;
+};
+export default async function Home() {
+  const countries = await getAllContries();
   return (
-    <>
-      <MainHeader />
-      <main>
-        <CountriesList/>
-      </main>
-    </>
+    <div className="p-4">
+      <CountriesList data={countries} />
+    </div>
   );
 }
-//sqassM0ZqCOjEZcagSm08V5YdPy7W62jNS9qFx71
