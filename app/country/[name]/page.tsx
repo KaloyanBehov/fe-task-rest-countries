@@ -90,7 +90,7 @@ export default async function CountryPage({
           </div>
           <div className="mt-4 ">
             <p className="font-bold">Border Countries:</p>
-            {country.borders && country.borders.length > 0 ? (
+            {Array.isArray(country.borders) && country.borders.length > 0 ? (
               <div className="flex flex-wrap gap-2 mt-2">
                 {country.borders.map((border) => (
                   <span
